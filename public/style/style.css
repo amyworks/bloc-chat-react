@@ -1,0 +1,534 @@
+/* 
+	Flannel Reset
+		AUTHOR 		Amy Coleman
+		COMPANY		Flannel Studios
+		URL 		http://flannelstudios.com/	
+		GIT REPO	https://github.com/amyworks/
+		LICENSE		GNU General Public License 3.0
+*/
+
+	/*
+		FONT NAME QUICK REFERENCE
+		https://fonts.googleapis.com/css?family=Rammetto+One|Roboto
+
+		--Normal		'Roboto', sans-serif;
+		--Heading		'Rammetto One', 'Roboto', sans-serif;
+		--Heading		'Roboto Condensed', sans-serif;
+		
+	*/
+
+html, body, embed, iframe, object, code, header, footer, nav, section, article, aside, details, summary, hgroup, 
+a, img, canvas, figure, audio, video, mark, time, div, p, span, menu, ul, ol, li, dd, dt, dl,
+h1, h2, h3, h4, h5, h6, pre, big, small, strong, sub, sup, em, del, ins, var, b, u, i,
+blockquote, cite, caption, figcaption, q, dfn, abbr, acronym, address, form, label, fieldset, kbd, output,
+table, legend, tbody, thead, tfoot, tr, th, td, ruby {
+	/* Margin, padding, border */
+	margin: 0; padding: 0; border: 0;
+	/* Font */
+	font-family:'Roboto', sans-serif; 
+	font-size: 1em;
+	/* Alignment */
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+header, hgroup, footer, nav, section, article, aside, menu, details, figcaption, figure {
+	display: block;
+}
+
+/* Basic Formatting */
+body {
+	line-height: 1;
+	background:#ebdba0 url(img/tacos-yellow.png) repeat center center fixed;
+	background-size: 700px 700px;
+	color:#583927;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Deprecated elements */ 
+center, tt, b, u, i, basefont, font, dir, applet, isindex, menu, s, strike, plaintext, listing, xmp {
+	margin:0; padding:0; border:0; vertical-align: baseline;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	CLASS HELPERS
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.block{display:block;}
+.inline {display:inline;}
+.rounded-border {border-radius:10px;}
+.float-left{float:left;}
+.float-right{float:right;}
+.clearfix::after { /* clears a floated element -- see https://www.w3schools.com/howto/howto_css_clearfix.asp for details */
+	content: "";
+    clear: both;
+    display: table;
+}
+.element-center {margin:0 auto !important;}
+.text-center{text-align:center;}
+.text-right {text-align: right;}
+.padded {padding:30px;}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	TYPOGRAPHY STYLING
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* --------------------------------- 
+   Normal Text 
+   --------------------------------- */
+p {
+	font-size:1.15em;
+	line-height: 1.5em;
+}
+
+/* --------------------------------- 
+   Headings 
+   --------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	text-decoration: none;
+}
+h1 {
+	font-family: 'Rammetto One', 'Roboto', sans-serif;
+	font-size:5em;
+	padding:70px 0 30px 0;
+	text-transform: uppercase;
+	color:#da4620;
+}
+h2 {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size:2em;
+	padding:20px 0;
+	text-transform: uppercase;
+}
+h3 {
+	font-family: 'Rammetto One', 'Roboto', sans-serif;
+	font-size:2em;
+	padding:0 0 0 0;
+	text-transform: uppercase;
+}
+h4 {
+	font-family: 'Rammetto One', 'Roboto', sans-serif;
+	font-style:italic;
+	font-size:1em;
+}
+h5 {
+	font-family: 'Rammetto One', 'Roboto', sans-serif;
+	font-size:.75em;
+	padding:0 0 0 0;
+}
+h6 {
+	font-family: 'Rammetto One', 'Roboto', sans-serif;
+	font-size:.5em;
+	padding:0 0 0 0;
+}
+
+/* --------------------------------- 
+   Emphasizing 
+   --------------------------------- */
+strong, b {
+	font-weight:bold; /* change to value >100 or use {font-family: font-name-weight} */
+}
+em, i {
+	font-style:italic;  /* change to {font-family: font-name-style} */
+}
+.underline {
+	text-decoration:underline;
+}
+
+/* --------------------------------- 
+   Lists 
+   --------------------------------- */
+ol {
+	list-style-type: decimal;
+	margin:0 0 0 40px;
+}
+ul {
+	list-style-type: disc;
+	margin:0 0 0 40px;
+}
+li {
+	line-height:1.5em;
+	padding:0 0 20px 0;
+}
+li:last-child {
+	padding:0 0 20px 0;
+}
+
+/* ---------------------------------
+   Quoting, citing, and highlighting 
+   --------------------------------- */
+sub, sup {
+	font-size:.5em;
+	padding-left:2px;
+}
+sub {  /* subscript styling */
+	vertical-align:sub;
+}
+sup { /* superscript styling */
+	vertical-align:super;
+}
+blockquote {
+	quotes:none;
+}
+blockquote:before, blockquote:after {
+	content: none;
+}
+q {
+	quotes:'"' '"' "'" "'";
+}
+q:before {
+	content:open-quote;
+}
+q:after {
+	content:close-quote;
+}
+.highlight {background:#ffee00;}
+
+img {
+	max-width:100%;
+	padding-bottom: 20px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	ELEMENT HELPERS
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ---------------------------------
+   Header and footer 
+   --------------------------------- */
+header.taco-header {
+	text-align:center;
+}
+header.taco-header p {
+	
+}
+footer p {
+	margin:50px 0;
+	text-align: center;
+	font-size:.75em;
+}
+footer p span {
+	
+}
+
+/* ---------------------------------
+   Header navigation 
+   --------------------------------- */
+nav.main-nav {
+	width:100%;
+	text-align:right;	
+	background:#eed581;
+	font-size:.75em;
+	padding:10px;
+}
+nav.main-nav ul {
+	float:right;
+	list-style: none;
+	margin:0 auto;
+	padding-right:40px;
+}
+nav.main-nav ul li {
+	float:left;
+	line-height:1em;
+	padding:0 50px 0 0;
+	color:#bf7636;
+}
+nav.main-nav ul li:last-child{
+	padding:0 0 0 0;
+}
+nav.main-nav ul li a {
+	color:#bf7636;
+}
+
+/*==============================================
+
+	Custom Classes
+
+  ==============================================*/
+.taco-o {
+	color:#6a6217;
+}
+#chatrooms {
+	background:#f2cf63;
+	height:100vh;
+	padding:30px;
+}
+ul.room-list {
+	list-style-type: none;
+	padding:0;
+	margin:0 10px;
+}
+ul.room-list li:before {
+	content:"\f27a";
+	font-family: "Font Awesome 5 Free";
+	padding-right:7px;
+	font-weight:normal;
+	color:#5d9624;
+}
+ul.room-list li {
+	font-weight:bold;
+	font-size:1em;
+	line-height:1;
+	padding:15px;
+	border-top:1px solid #bda087;
+}
+ul.room-list li:last-child {
+	border-bottom:1px solid #bda087;
+}
+ul.room-list li:nth-child(even) {
+	background:rgba(255,255,255,.5);
+}
+ul.room-list li:nth-child(odd) {
+	background:rgba(255,255,255,.3);
+}
+
+
+/* 
+	Flannel Grid
+		AUTHOR 		Amy Coleman
+		COMPANY		Flannel Studios
+		URL 		http://flannelstudios.com/	
+		GIT REPO	https://github.com/amyworks/
+		LICENSE		GNU General Public License 3.0
+*/
+
+/* -----------------------
+	Normalize
+   ----------------------- */
+
+.fg-row {
+	max-width:1000px;
+	margin:0 auto;
+}
+.fg-row-padded {
+	max-width:1200px;
+	margin: 30px auto;
+}
+.fg-row-padded h2:nth-child(2) {
+	padding-top:100px;
+}
+.fg-col {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float:left;
+}
+.fg-col-padded {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float:left;
+	padding:20px;
+}
+.full-width {
+	width:100%;
+	margin:0 auto;
+}
+
+
+/* -----------------------
+	Half columns
+   ----------------------- */
+.half, .two-quarter, .three-sixth {
+	width:47%;	
+	margin-right:6%;
+}
+.half:last-child, .two-quarter:last-child, .three-sixth:last-child {
+	margin-right:0;
+}
+
+/* -----------------------
+	Third columns
+   ----------------------- */
+.third, .two-sixth {
+	width:29.33%;	
+	margin-right:6%;
+}
+.two-third, .four-sixth {
+	width:64.66%;
+	margin-right:6%;
+}
+.third:last-child, .two-sixth:last-child {
+	width:29.34%;
+	margin-right:0;
+}
+.two-third:last-child, .four-sixth:last-child {
+	width:64.67%;
+	margin-right:0;
+}
+
+/* -----------------------
+	Quarter columns
+   ----------------------- */
+.quarter {
+	width:20.5%;	
+	margin-right:6%;
+}
+.three-quarter {
+	width:73.5%;
+	margin-right:6%;
+}
+.quarter:last-child, .three-quarter:last-child {
+	margin-right:0;
+}
+
+/* -----------------------
+	Fifth columns
+   ----------------------- */
+.fifth {
+	width:16%;	
+	margin-right:5%;
+}
+.two-fifth {
+	width:37%;
+	margin-right:5%;
+}
+.three-fifth {
+	width:58%;
+	margin-right:5%;
+}
+.four-fifth {
+	width:79%;
+	margin-right:5%;
+}
+.fifth:last-child, .two-fifth:last-child, .three-fifth:last-child, .four-fifth:last-child {
+	margin-right:0;
+}
+
+/* -----------------------
+	Sixth columns
+   ----------------------- */
+.sixth {
+	width:11.66%;	
+	margin-right:6%;
+}
+.five-sixth {
+	width:82.33%;
+	margin-right:6%;
+}
+.sixth:last-child {
+	width:11.67%;
+	margin-right:0;
+}
+.five-sixth:last-child {
+	width:82.34%;
+	margin-right:0;
+}
+
+
+
+/*==============================================
+
+	RESPONSIVE TWEAKS
+
+  ==============================================*/
+
+/* -----------------------
+	Tablets - Landscape
+   ----------------------- */
+@media screen and (max-width: 1199px) {
+	.fg-row {
+		margin:0 50px;
+	}
+	.third, .two-sixth, .two-third, .four-sixth, .sixth, .five-sixth {
+		width:29.33%;	
+		margin-right:6%;
+	}
+	.third:last-child, .two-sixth:last-child, .two-third:last-child, .four-sixth:last-child, .sixth:last-child, .five-sixth:last-child {
+		margin-right:0;
+	}
+	.quarter, .three-quarter, .fifth, .two-fifth, .three-fifth, .four-fifth {
+		width:47%;
+		margin-right:6%;
+	} 
+	.quarter:last-child, .three-quarter:last-child, .fifth:last, .two-fifth:last-child, .three-fifth:last-child, .four-fifth:last-child {
+		margin-right:0;
+	}
+
+}
+
+/* -----------------------
+	Tablets - Portrait
+   ----------------------- */
+@media screen and (max-width: 960px) {
+	.fg-row {
+		margin:0 30px;
+	}
+	.third:last-child, .two-sixth:last-child, .two-third:last-child, .four-sixth:last-child, .quarter:last-child, .three-quarter:last-child, 
+	.fifth:last-child, .two-fifth:last-child, .three-fifth:last-child, .four-fifth:last-child, .sixth:last-child, .five-sixth:last-child {
+		margin-right:0;
+	}
+	/* CUSTOM ELEMENTS */
+	h3 {
+		font-size: 1.5em;
+	}
+}
+
+/* -----------------------
+	Smartphones - Landscape
+   ----------------------- */
+@media screen and (max-width: 780px) {
+	.fg-row {
+		margin:0 30px;
+	}
+	.half, .two-quarter, .three-sixth, .third, .two-sixth, .two-third, .four-sixth, .quarter, 
+	.three-quarter, .fifth, .two-fifth, .three-fifth, .four-fifth, .sixth, .five-sixth,
+	.half:last-child, .two-quarter:last-child, .three-sixth:last-child, .third:last-child, 
+	.two-sixth:last-child, .two-third:last-child, .four-sixth:last-child, .quarter:last-child, 
+	.three-quarter:last-child, .fifth:last-child, .two-fifth:last-child, .three-fifth:last-child, 
+	.four-fifth:last-child, .sixth:last-child, .five-sixth:last-child  {
+		width:100%;
+	}
+	.third:last-child, .two-sixth:last-child, .two-third:last-child, .four-sixth:last-child, .quarter:last-child, .three-quarter:last-child, 
+	.fifth:last-child, .two-fifth:last-child, .three-fifth:last-child, .four-fifth:last-child, .sixth:last-child, .five-sixth:last-child {
+		margin-right:0;
+	}
+	/* CUSTOM ELEMENTS */
+	h3 {
+		font-size: 1.5em;
+	}
+}
+
+/* -----------------------
+	Smartphones
+   ----------------------- */
+@media screen and (max-width: 660px) {
+	.fg-row {
+		margin:0 17px;
+	}
+	.fg-col {
+		float:none;
+		padding:30px;
+	}
+	.half, .two-quarter, .three-sixth, .third, .two-sixth, .two-third, .four-sixth, .quarter, 
+	.three-quarter, .fifth, .two-fifth, .three-fifth, .four-fifth, .sixth, .five-sixth,
+	.half:last-child, .two-quarter:last-child, .three-sixth:last-child, .third:last-child, 
+	.two-sixth:last-child, .two-third:last-child, .four-sixth:last-child, .quarter:last-child, 
+	.three-quarter:last-child, .fifth:last-child, .two-fifth:last-child, .three-fifth:last-child, 
+	.four-fifth:last-child, .sixth:last-child, .five-sixth:last-child  {
+		width:100%;
+	}
+
+	/* CUSTOM ELEMENTS */
+	body {
+		background-size:100%;
+		width:100%;
+	}
+	header.main h1 {
+		font-size:1.5em;
+	}
+	header.main p {
+		font-size:.75em;
+	}
+
+}
