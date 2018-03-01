@@ -267,7 +267,29 @@ ul.room-list {
 	list-style-type: none;
 	padding:0;
 	margin:0 10px;
+	height:40vh;
+	overflow: auto;
+	border:1px solid #bda087;
 }
+			/* width */
+			ul.room-list::-webkit-scrollbar {
+			    width: 20px;
+			}
+
+			/* Track */
+			ul.room-list::-webkit-scrollbar-track {
+			    background: rgba(93,150,36,0.3);
+			}
+
+			/* Handle */
+			ul.room-list::-webkit-scrollbar-thumb {
+			    background: rgba(93,150,36,1.0); 
+			}
+
+			/* Handle on hover */
+			ul.room-list::-webkit-scrollbar-thumb:hover {
+			    background: rgba(93,150,36,0.7); 
+			}
 ul.room-list li:before {
 	content:"\f27a";
 	font-family: "Font Awesome 5 Free";
@@ -282,8 +304,8 @@ ul.room-list li {
 	padding:15px;
 	border-top:1px solid #bda087;
 }
-ul.room-list li:last-child {
-	border-bottom:1px solid #bda087;
+ul.room-list li:first-child {
+	border:none
 }
 ul.room-list li:nth-child(even) {
 	background:rgba(255,255,255,.5);
@@ -291,7 +313,28 @@ ul.room-list li:nth-child(even) {
 ul.room-list li:nth-child(odd) {
 	background:rgba(255,255,255,.3);
 }
-
+input[type=text] {
+	background:rgba(255,255,255,0.2);
+	border-radius: 30px;
+	border:1px solid #bda087;
+	padding:10px;
+	margin:20px 10px;
+}
+input[type=submit] {
+	background:#732c02;
+	border:none;
+	color:#fff;
+	padding:10px 20px;
+	border-radius: 30px;
+	text-transform:uppercase;
+	font-weight:bold;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size:.6em;
+	vertical-align: middle;
+}
+input[type=submit]:hover {
+	background:#bf7636;
+}
 
 /* 
 	Flannel Grid
