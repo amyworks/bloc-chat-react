@@ -42,6 +42,7 @@ body {
 	background:#ebdba0 url(img/tacos-yellow.png) repeat center center fixed;
 	background-size: 700px 700px;
 	color:#583927;
+	overflow:hidden;
 }
 table {
 	border-collapse: collapse;
@@ -194,7 +195,6 @@ q:after {
 
 img {
 	max-width:100%;
-	padding-bottom: 20px;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -248,6 +248,7 @@ nav.main-nav ul li:last-child{
 }
 nav.main-nav ul li a {
 	color:#bf7636;
+	text-decoration: none;
 }
 
 /*==============================================
@@ -255,9 +256,51 @@ nav.main-nav ul li a {
 	Custom Classes
 
   ==============================================*/
-.taco-o {
-	color:#6a6217;
+.taco-landing {
+	text-align:center;
 }
+			.taco-landing {
+				padding-right:6% !important;
+			}
+			.taco-landing h1, .taco-landing p a {
+				color:#fff;
+				padding:30px;
+			}
+			.taco-landing h1 {
+				font-size:5em;
+				padding-top:150px;
+				text-shadow: 0 5px 20px rgba(40, 15, 0, .5);
+			}
+			.taco-landing p {
+				color:#583927;
+				padding:30px;
+			}
+			.taco-landing p:last-child {
+				background:transparent;
+				margin:0;
+			}
+			.taco-landing p a {
+				font-size:1.5em;
+				font-family:'Roboto Condensed', sans-serif;
+				font-weight:bold;
+				text-decoration:none;
+				text-transform: uppercase;
+				padding:20px 40px;
+				background:#5d9624;
+				border-radius:50px;
+				box-shadow: 0 5px 20px rgba(40, 15, 0, .5);
+				margin:0 0 0 0;
+			}
+			.taco-landing p a:hover {
+				background:#50811e;
+			}
+			.taco-landing p:last-child:active {
+				margin-top: 5px;
+			}
+			.taco-landing p a:active {
+				margin-top:10px 0 0 0;
+				box-shadow: 0 0 10px rgba(40, 15, 0, .7);
+			}
 #chatrooms {
 	background:#f2cf63;
 	height:100vh;
@@ -267,26 +310,19 @@ ul.room-list {
 	list-style-type: none;
 	padding:0;
 	margin:0 10px;
-	height:40vh;
+	max-height:40vh;
 	overflow: auto;
 	border:1px solid #bda087;
 }
-			/* width */
 			ul.room-list::-webkit-scrollbar {
 			    width: 20px;
 			}
-
-			/* Track */
 			ul.room-list::-webkit-scrollbar-track {
 			    background: rgba(93,150,36,0.3);
 			}
-
-			/* Handle */
 			ul.room-list::-webkit-scrollbar-thumb {
 			    background: rgba(93,150,36,1.0); 
 			}
-
-			/* Handle on hover */
 			ul.room-list::-webkit-scrollbar-thumb:hover {
 			    background: rgba(93,150,36,0.7); 
 			}
@@ -304,6 +340,11 @@ ul.room-list li {
 	padding:15px;
 	border-top:1px solid #bda087;
 }
+ul.room-list a {
+	color:#583927;
+	text-decoration: none;
+	border-image-width: 0;
+}
 ul.room-list li:first-child {
 	border:none
 }
@@ -313,14 +354,14 @@ ul.room-list li:nth-child(even) {
 ul.room-list li:nth-child(odd) {
 	background:rgba(255,255,255,.3);
 }
-input[type=text] {
+#chatrooms input[type=text] {
 	background:rgba(255,255,255,0.2);
 	border-radius: 30px;
 	border:1px solid #bda087;
 	padding:10px;
-	margin:20px 10px;
+	margin:10px;
 }
-input[type=submit] {
+#chatrooms input[type=submit] {
 	background:#732c02;
 	border:none;
 	color:#fff;
@@ -332,9 +373,75 @@ input[type=submit] {
 	font-size:.6em;
 	vertical-align: middle;
 }
-input[type=submit]:hover {
+#chatrooms input[type=submit]:hover {
 	background:#bf7636;
 }
+h3.chatroom-name {
+	padding-top:70px;
+}
+section.no-messages, img.no-image {
+	display:none;
+}
+section.two-third-chatroom {
+	margin-top:20px;
+	margin-right:6%;
+	margin-bottom:0;
+	width:58.66%;
+	height:80vh;
+	overflow: auto;
+	padding:30px;
+	background:rgba(255,255,255,0.5);
+	border:1px solid #bda087;
+}
+			section.two-third-chatroom::-webkit-scrollbar {
+			    width: 20px;
+			}
+			section.two-third-chatroom::-webkit-scrollbar-track {
+			    background: rgba(93,150,36,0.3);
+			}
+			section.two-third-chatroom::-webkit-scrollbar-thumb {
+			    background: rgba(93,150,36,1.0); 
+			}
+			section.two-third-chatroom::-webkit-scrollbar-thumb:hover {
+			    background: rgba(93,150,36,0.7); 
+			}
+			.chatroom-message {
+				margin-bottom:20px;
+			}
+			.chatroom-username, .chatroom-timestamp {
+				font-size:.75em;
+			}
+			.chatroom-username {
+				font-weight:bold;
+			}
+			.chatroom-timestamp {
+				font-style:italic;
+			}
+			.chatroom-message-content {
+				background:#f2cf63;
+				padding:20px;
+				border-radius:30px;
+				display: inline-block;
+				margin:5px 0;
+				position: relative;
+			}
+			.chatroom-message-content:after {
+				content: '';
+				position: absolute;
+				left: 5px;
+				top: 50%;
+				width: 0;
+				height: 0;
+				border: 20px solid transparent;
+				border-right-color: #f2cf63;
+				border-left: 0;
+				border-bottom: 0;
+				margin-top: -5px;
+				margin-left: -20px;
+			}
+			.chatroom-image {
+				border-radius:20px;
+			}
 
 /* 
 	Flannel Grid
@@ -351,6 +458,10 @@ input[type=submit]:hover {
 
 .fg-row {
 	max-width:1000px;
+	margin:0 auto;
+}
+.fg-full-width-row {
+	width:100%;
 	margin:0 auto;
 }
 .fg-row-padded {
@@ -372,10 +483,6 @@ input[type=submit]:hover {
 	box-sizing: border-box;
 	float:left;
 	padding:20px;
-}
-.full-width {
-	width:100%;
-	margin:0 auto;
 }
 
 
