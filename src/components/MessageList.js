@@ -14,12 +14,23 @@ class MessageList extends Component {
      	this.messagesRef = this.props.firebase.database().ref('messages');
     }
 
-    componentDidMount() {
-	    this.messagesRef.orderByChild('roomId').equalTo(this.props.roomId).on('child_added', snapshot => {
+    createMessageList() {
+    	this.messagesRef.orderByChild('roomId').equalTo(this.props.roomId).on('child_added', snapshot => {
 	    	const message = snapshot.val();
 	       	message.key = snapshot.key;
 	       	this.setState({ messages: this.state.messages.concat( message ) })
 	    });
+    }
+
+    componentDidMount() {
+	    this.createMessageList();	    
+   	}
+
+   	componentDidUpdate(prevProps, prevState) {
+   		if(prevProps.roomId !== this.props.roomId) {
+   			this.setState({messages:[]});
+   			this.createMessageList();
+   		}
    	}
 
    	render() {
