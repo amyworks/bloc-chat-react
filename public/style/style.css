@@ -240,8 +240,9 @@ nav.main-nav ul {
 nav.main-nav ul li {
 	float:left;
 	line-height:1em;
-	padding:0 50px 0 0;
+	padding:7px 50px 0 0;
 	color:#bf7636;
+	vertical-align: middle;
 }
 nav.main-nav ul li:last-child{
 	padding:0 0 0 0;
@@ -250,6 +251,29 @@ nav.main-nav ul li a {
 	color:#bf7636;
 	text-decoration: none;
 }
+			button.user-logged-in, button.user-logged-out {				
+				color:#fff;
+				border:none;
+				border-radius:30px;
+				font-size:1em;
+				font-family: 'Roboto Condensed', sans-serif;
+				font-weight: bold;
+				text-transform: uppercase;
+				padding:5px 15px;
+				vertical-align: middle;
+			}
+			button.user-logged-in {
+				background:#bf7636;
+			}
+			button.user-logged-in:hover {
+				background:#aa6930;
+			}
+			button.user-logged-out {
+				background:#5d9624;
+			}
+			button.user-logged-out:hover {
+				background:#50811e;
+			}
 
 /*==============================================
 

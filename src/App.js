@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import User from './components/User.js';
 import Landing from './components/Landing';
 import RoomList from './components/RoomList';
 import Chat from './components/Chat';
@@ -7,7 +8,7 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import * as firebase from 'firebase';
 		// Initialize Firebase
-		var config = {
+		const config = {
 			apiKey: "AIzaSyAzA1TCwnmOUSTD8B5f2hpcVmQsbCLwJY0",
 		    authDomain: "amyworks-bloc-chat-react.firebaseapp.com",
 		    databaseURL: "https://amyworks-bloc-chat-react.firebaseio.com",
@@ -23,10 +24,26 @@ class App extends Component {
      	this.state = {
      		activeRoomName: 'Pick a room',
      		activeRoomDescription: '',
-     		roomId: ''
+     		roomId: '',
+     		userLoggedIn: false,     		
+     		username: 'Guest'
      	};
 
      	this.handleRoomSelect = this.handleRoomSelect.bind(this);
+     	this.handleLogin = this.handleLogin.bind(this);
+     	this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    handleLogin(e) {
+    	e.preventDefault();
+    	console.log('handleLogin fired');  	
+    	this.setState({userLoggedIn: true});
+    }
+
+    handleLogout(e) {
+    	e.preventDefault();
+    	console.log('handleLogout fired');
+    	this.setState({userLoggedIn: false});
     }
 
 	handleRoomSelect(e, selectedId, selectedName, selectedDescription) {
@@ -37,16 +54,12 @@ class App extends Component {
 	render() {
 	    return (
 	    	<div className="App">
-	        	<header className="taco-header">
-		        	<nav className="main-nav clearfix">
-		        		<ul>
-		        			<li>Logged in as <b>YupAmyWorks</b></li>
-		        			<li><Link to={'/chat'}>Chat</Link></li>
-		        			<li><Link to='/profile'>Profile</Link></li>
-		        			<li><Link to='/login'>Log out</Link></li>     				
-		        		</ul>
-		        	</nav>
-		        </header>
+	        	<User
+	        		userLoggedIn={this.state.userLoggedIn}
+	        		username={this.state.username}
+	        		handleLogin={this.handleLogin}
+	        		handleLogout={this.handleLogout}
+	        		firebase={firebase} />
 
 		        <main className="fg-full-width-row clearfix">
 		        	<section id="chatrooms" className="fg-col third">

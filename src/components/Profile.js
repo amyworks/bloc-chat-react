@@ -10,7 +10,7 @@ class Profile extends Component {
 
 	render() {
 	    return (
-	    	<section id="profile">
+	    	<section id="user-profile">
 			        <h3>YupAmyWorks</h3>
 			        <p>Administrator</p>
 	    	</section>
