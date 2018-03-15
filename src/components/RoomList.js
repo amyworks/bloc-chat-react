@@ -41,6 +41,8 @@ class RoomList extends Component {
   render() {
     return (
         <section>
+          <h1 className="taco-title">Taco Chats</h1>
+          <h2 className="taco-chats">Chatroom list</h2>
           <ul className="room-list">
             {
               this.state.rooms.map((room) =>
@@ -50,7 +52,7 @@ class RoomList extends Component {
               )
             }
           </ul>
-          <form onSubmit={this.createRoom}>
+          <form className="create-chatroom" onSubmit={this.createRoom}>
             <input type="text" value={this.state.newRoom} placeholder="Create a new room" onChange={this.handleRoomCreate} />
             <input type="submit" value="Let's taco bout it" />
           </form>

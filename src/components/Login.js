@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
 class Login extends Component {
-	constructor(props) {
-     	super(props);
-     	this.state = {
-     		
-     	};
-    }
-
 	render() {
 	    return (
-	    	<section id="login">
-			        <h3>Login</h3>
-			        <p>Users sign in here :)</p>
+	    	<section id="login" className="fg-col two-third">
+			    <h3>Login</h3>
+			    <form className="login-form" onSubmit={this.props.handleLogin}>
+			    	<label>Email address</label>
+			    	<input type="email" />
+			    	<label>Password</label>
+			    	<input type="password" />
+			    	<input type="submit" value="Login" />
+			    	<button>Forgot password</button>
+			    </form>
 	    	</section>
 	    )
 	}

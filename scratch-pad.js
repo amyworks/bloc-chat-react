@@ -1,0 +1,1 @@
+(e) => this.props.handleLogin(e))

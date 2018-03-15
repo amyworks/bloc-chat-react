@@ -1,28 +1,308 @@
-.App {
-  text-align: center;
+/* 
+-----------------------------
+
+  Landing Styles 
+
+----------------------------- 
+*/
+.taco-landing {
+  text-align:center;
+}
+      .taco-landing {
+        padding-right:6% !important;
+      }
+      .taco-landing h1, .taco-landing p a {
+        color:#fff;
+        padding:30px;
+      }
+      .taco-landing h1 {
+        font-size:5em;
+        padding-top:150px;
+        text-shadow: 0 5px 20px rgba(40, 15, 0, .5);
+      }
+      .taco-landing p {
+        color:#583927;
+        padding:30px;
+      }
+      .taco-landing p:last-child {
+        background:transparent;
+        margin:0;
+      }
+      .taco-landing p a {
+        font-size:1.5em;
+        font-family:'Roboto Condensed', sans-serif;
+        font-weight:bold;
+        text-decoration:none;
+        text-transform: uppercase;
+        padding:20px 40px;
+        background:#5d9624;
+        border-radius:50px;
+        box-shadow: 0 5px 20px rgba(40, 15, 0, .5);
+        margin:0 0 0 0;
+      }
+      .taco-landing p a:hover {
+        background:#50811e;
+      }
+      .taco-landing p:last-child:active {
+        margin-top: 5px;
+      }
+      .taco-landing p a:active {
+        margin-top:10px 0 0 0;
+        box-shadow: 0 0 10px rgba(40, 15, 0, .7);
+      }
+
+/* 
+-----------------------------
+
+  RoomList Styles 
+
+----------------------------- 
+*/
+#chatroom-list {
+  background:#f2cf63;
+  height:100vh;
+  padding:30px;
+}
+ul.room-list {
+  list-style-type: none;
+  padding:0;
+  margin:0 10px;
+  max-height:40vh;
+  overflow: auto;
+  border:1px solid #bda087;
+}
+      ul.room-list::-webkit-scrollbar {
+          width: 20px;
+      }
+      ul.room-list::-webkit-scrollbar-track {
+          background: rgba(93,150,36,0.3);
+      }
+      ul.room-list::-webkit-scrollbar-thumb {
+          background: rgba(93,150,36,1.0); 
+      }
+      ul.room-list::-webkit-scrollbar-thumb:hover {
+          background: rgba(93,150,36,0.7); 
+      }
+ul.room-list li:before {
+  content:"\f27a";
+  font-family: "Font Awesome 5 Free";
+  padding-right:7px;
+  font-weight:normal;
+  color:#5d9624;
+}
+ul.room-list li {
+  font-weight:bold;
+  font-size:1em;
+  line-height:1;
+  padding:15px;
+  border-top:1px solid #bda087;
+}
+ul.room-list a {
+  color:#583927;
+  text-decoration: none;
+  border-image-width: 0;
+}
+ul.room-list li:first-child {
+  border:none
+}
+ul.room-list li:nth-child(even) {
+  background:rgba(255,255,255,.5);
+}
+ul.room-list li:nth-child(odd) {
+  background:rgba(255,255,255,.3);
+}
+form.create-chatroom {
+  padding:0;
+  margin:10px 20px 0 10px;
+}
+form.create-chatroom input[type=text] {
+  display:inline-block;
+  background:rgba(255,255,255,0.2);
+  border-radius: 30px;
+  border:1px solid #bda087;
+  padding:10px;
+  width:50%;
+  vertical-align: middle;
+  margin-right:10px;
+}
+form.create-chatroom input[type=submit] {
+  display:inline-block;
+  background:#732c02;
+  border:none;
+  color:#fff;
+  padding:10px 20px;
+  border-radius: 30px;
+  text-transform:uppercase;
+  font-weight:bold;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size:.6em;
+  vertical-align: middle;
+}
+form.create-chatroom input[type=submit]:hover {
+  background:#bf7636;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/* 
+-----------------------------
+
+  MessageList Styles 
+
+----------------------------- 
+*/
+h3.chatroom-name {
+  padding-top:70px;
+}
+section.no-messages, img.no-image {
+  display:none;
+}
+section.two-third-chatroom {
+  margin-top:20px;
+  margin-right:6%;
+  margin-bottom:0;
+  width:58.66%;
+  height:80vh;
+  overflow: auto;
+  padding:30px;
+  background:rgba(255,255,255,0.5);
+  border:1px solid #bda087;
+}
+      section.two-third-chatroom::-webkit-scrollbar {
+          width: 20px;
+      }
+      section.two-third-chatroom::-webkit-scrollbar-track {
+          background: rgba(93,150,36,0.3);
+      }
+      section.two-third-chatroom::-webkit-scrollbar-thumb {
+          background: rgba(93,150,36,1.0); 
+      }
+      section.two-third-chatroom::-webkit-scrollbar-thumb:hover {
+          background: rgba(93,150,36,0.7); 
+      }
+      .chatroom-message {
+        margin-bottom:20px;
+      }
+      .chatroom-username, .chatroom-timestamp {
+        font-size:.75em;
+        font-weight: 300;
+      }
+      .chatroom-username {
+        font-weight:bold;
+        vertical-align: middle;
+      }
+      .chatroom-avatar {
+        width:40px;
+        border-radius: 50%;
+        vertical-align: middle;
+        padding:0;
+      }
+            .chatroom-avatar.sentby-user {
+              margin-left:10px;
+            }
+            .chatroom-avatar.sentby-other {              
+              margin-right:10px;
+            }
+      .chatroom-timestamp {
+        font-style:italic;
+        margin-left:5px;
+      }
+      .chatroom-message-content {        
+        padding:20px;
+        display: inline-block;
+        margin:5px 0;
+        position: relative;
+      }
+            div.chatroom-message.sentby-other p.chatroom-message-content {
+              -webkit-border-radius: 30px;
+              -webkit-border-bottom-left-radius: 0;
+              -moz-border-radius: 30px;
+              -moz-border-radius-bottomleft: 0;
+              border-radius: 30px;
+              border-bottom-left-radius: 0;
+              background:#f2cf63;
+              margin-left:50px;
+            }
+            div.chatroom-message.sentby-user p.chatroom-message-content {
+              -webkit-border-radius: 30px;
+              -webkit-border-bottom-right-radius: 0;
+              -moz-border-radius: 30px;
+              -moz-border-radius-bottomright: 0;
+              border-radius: 30px;
+              border-bottom-right-radius: 0;
+              background: #6ca434;
+              color:#fff;
+              font-weight: 100;
+              margin-right:50px;
+            }
+            div.chatroom-message.sentby-user {
+              float:right;
+            }
+            div.chatroom-message.sentby-user p.chatroom-username {
+              text-align:right;
+            }
+            /*.chatroom-message-content:after {
+              content: '';
+              position: absolute;
+              left: 5px;
+              top: 50%;
+              width: 0;
+              height: 0;
+              border: 20px solid transparent;
+              border-right-color: #f2cf63;
+              border-left: 0;
+              border-bottom: 0;
+              margin-top: -5px;
+              margin-left: -20px;
+            }*/
+            .chatroom-image {
+              border-radius:20px;
+              padding:0;
+            }
+
+/* 
+-----------------------------
+
+  Profile Styles 
+
+----------------------------- 
+*/
+#user-profile {
+  text-align:center;
+  padding-top:40px;
+  padding-right: 6% !important;
+}
+img.user-avatar {
+  width:30%;
+  border-radius: 50%;
+}
+h2.username {
+  color:#5d9624;
+  padding:20px 0 5px 0;
+  font-weight:bold;
+  font-size:3em;
+}
+div.user-bio {
+  margin:30px 0;
+  background:rgba(255,255,255,0.5);
+  padding:40px;
+}
+div.user-bio h3 {
+  font-size:1.5em;
+  padding-bottom:20px;
+}
+div.user-bio p {
+  font-weight:300;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
+/* 
+-----------------------------
 
-.App-title {
-  font-size: 1.5em;
-}
+  Login Styles 
 
-.App-intro {
-  font-size: large;
+----------------------------- 
+*/
+#login {
+  padding-top:40px;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+form.login-form input {
+  display:block;
 }

@@ -6,6 +6,9 @@ import RoomList from './components/RoomList';
 import Chat from './components/Chat';
 import Login from './components/Login';
 import Profile from './components/Profile';
+import './Reset.css';
+import './Grid.css';
+import './App.css';
 import * as firebase from 'firebase';
 		// Initialize Firebase
 		const config = {
@@ -24,14 +27,35 @@ class App extends Component {
      	this.state = {
      		activeRoomName: 'Pick a room',
      		activeRoomDescription: '',
-     		roomId: '',
-     		userLoggedIn: false,     		
-     		username: 'Guest'
+     		activeRoomId: '',
+     		userLoggedIn: true,
+     		username: 'YupAmyWorks',
+     		userId: 'tUt9kL6BozeeqQieJdx30jPpdVv2',
+     		userInfo: {},
+     		guestAvatar: 'https://i.imgur.com/gOawD3s.png'
      	};
 
+     	this.usersRef = firebase.database().ref('/users/' + this.state.userId);
      	this.handleRoomSelect = this.handleRoomSelect.bind(this);
      	this.handleLogin = this.handleLogin.bind(this);
      	this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    componentDidMount() {
+		this.usersRef.once('value').then(snapshot => {
+			const user = snapshot.val();
+			user.key = snapshot.key;
+			this.setState({userInfo:
+				{
+					userAlignment: user.userAlignment,
+					userAvatar: user.userAvatar,
+					userBio: user.userBio,
+					userId: user.userId,
+					userRole: user.userRole,
+					username: user.username
+				}
+			});
+		});
     }
 
     handleLogin(e) {
@@ -46,9 +70,9 @@ class App extends Component {
     	this.setState({userLoggedIn: false});
     }
 
-	handleRoomSelect(e, selectedId, selectedName, selectedDescription) {
+	handleRoomSelect(e, selectRoomId, selectRoomName, selectRoomDescription) {
 		e.preventDefault();
-		this.setState({roomId: selectedId, activeRoomName: selectedName, activeRoomDescription: selectedDescription});
+		this.setState({activeRoomId: selectRoomId, activeRoomName: selectRoomName, activeRoomDescription: selectRoomDescription});
 	}
 
 	render() {
@@ -62,21 +86,19 @@ class App extends Component {
 	        		firebase={firebase} />
 
 		        <main className="fg-full-width-row clearfix">
-		        	<section id="chatrooms" className="fg-col third">
-						<h1 className="taco-title">Taco Chats</h1>
-						<h2 className="taco-chats">Chatroom list</h2>
+		        	<section id="chatroom-list" className="fg-col third">
 						<RoomList 
 							activeRoomName={this.state.activeRoomName}
 							activeRoomDescription={this.state.activeRoomDescription}
-							roomId={this.state.roomId}
+							activeRoomId={this.state.activeRoomId}
 							handleRoomSelect={this.handleRoomSelect}
 							firebase={firebase} />
 	        		</section>
 		        	<Switch>
 			        	<Route exact path="/" component={Landing} />
 			        	<Route path="/chat" render={props => <Chat {...this.state} />} />
-			        	<Route path="/login" component={Login} />		        	
-			        	<Route path="/profile" component={Profile} />
+			        	<Route path="/login" render={props => <Login {...this.state} />} />		        	
+			        	<Route path="/profile" render={props => <Profile {...this.state} />} />
 		        	</Switch>
 		        </main>
 	      	</div>

@@ -1,0 +1,451 @@
+/* 
+	FeBe Reset
+		VERSION		1.1.0
+		AUTHOR 		Amy Coleman
+		COMPANY		Amy Works
+		URL 		http://amy.works/febe-css-reset/demo
+		GIT REPO	https://github.com/amyworks/febe-css-reset.git
+		LICENSE		GNU General Public License 3.0
+*/
+
+	/*
+		FONT NAME QUICK REFERENCE
+		https://fonts.googleapis.com/css?family=Rammetto+One|Roboto
+
+		--Normal		'Roboto', sans-serif;
+		--Heading		'Rammetto One', 'Roboto', sans-serif;
+		--Heading		'Roboto Condensed', sans-serif;
+
+
+		FONT AWESOME 5 ICONS QUICK REFERENCE
+		https://use.fontawesome.com/releases/v5.0.8/css/all.css
+
+		  --SOLID		font-family: 'Font Awesome 5 Free';
+		  				font-weight:900;
+		  --OPEN		font-family: 'Font Awesome 5 Free';
+		  				font-weight:400;
+		  --OUTLINE		font-family: 'Font Awesome 5 Free';
+		  				font-weight:300;
+		  --BRANDS		font-family: 'Font Awesome 5 Free';
+		  				font-weight:400;
+
+	*/
+
+html, body, embed, iframe, object, code, header, footer, nav, section, article, aside, details, summary, hgroup, 
+a, img, canvas, figure, audio, video, mark, time, div, p, span, menu, ul, ol, li, dd, dt, dl,
+h1, h2, h3, h4, h5, h6, pre, big, small, strong, sub, sup, em, del, ins, var, b, u, i,
+blockquote, cite, caption, figcaption, q, dfn, abbr, acronym, address, form, label, fieldset, kbd, output,
+table, legend, tbody, thead, tfoot, tr, th, td, ruby {
+	/* Margin, padding, border */
+	margin: 0; padding: 0; border: 0;
+	/* Font */
+	font-family:'Roboto', sans-serif; 
+	font-size: 1em;
+	/* Alignment */
+	vertical-align: baseline;
+}
+									/* Deprecated elements */ 
+									center, tt, b, u, i, basefont, font, dir, applet, 
+									isindex, menu, s, strike, plaintext, listing, xmp {
+										/* Margin, padding, border */
+										margin: 0; padding: 0; border: 0;
+										/* Font */
+										font-family:'Roboto', sans-serif; 
+										font-size: 1em;
+										/* Alignment */
+										vertical-align: baseline;
+									}
+
+/* HTML5 display-role reset for older browsers */
+header, hgroup, footer, nav, section, article, aside, menu, details, figcaption, figure {
+	display: block;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	BASIC FORMATTING
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+body {
+	line-height: 1;
+	background:#ebdba0 url(img/tacos-yellow.png) repeat center center fixed;
+	background-size: 700px 700px;
+	color:#583927;
+	overflow:hidden;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* --------------------------------- 
+   Normal Text and Links
+   --------------------------------- */
+p {
+	font-size:1.15em;
+	line-height: 1.5em;
+}
+a {
+	text-decoration: none;
+	color:#4253f4;
+}
+a:hover {
+	color:#416df4;
+}
+a:visited, a:active {
+	color:#8941f4;
+}
+
+/* --------------------------------- 
+   Headings 
+   --------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	text-decoration: none;
+}
+h1 {
+	font-family: 'Rammetto One', 'Roboto', sans-serif;
+	font-size:5em;
+	padding:70px 0 30px 0;
+	text-transform: uppercase;
+	color:#da4620;
+}
+h2 {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size:2em;
+	padding:20px 0;
+	text-transform: uppercase;
+}
+h3 {
+	font-family: 'Rammetto One', 'Roboto', sans-serif;
+	font-size:2em;
+	padding:0 0 0 0;
+	text-transform: uppercase;
+}
+h4 {
+	font-family: 'Rammetto One', 'Roboto', sans-serif;
+	font-style:italic;
+	font-size:1em;
+}
+h5 {
+	font-family: 'Rammetto One', 'Roboto', sans-serif;
+	font-size:.75em;
+	padding:0 0 0 0;
+}
+h6 {
+	font-family: 'Rammetto One', 'Roboto', sans-serif;
+	font-size:.5em;
+	padding:0 0 0 0;
+}
+
+/* --------------------------------- 
+   Emphasizing Text
+   --------------------------------- */
+strong, b {
+	font-weight:bold;
+}
+em, i {
+	font-style:italic;
+}
+.underline {
+	text-decoration:underline;
+}
+
+/* --------------------------------- 
+   Lists 
+   --------------------------------- */
+ol {
+	list-style-type: decimal;
+	margin:0 0 0 40px;
+}
+ul {
+	list-style-type: disc;
+	margin:0 0 0 40px;
+}
+li {
+	line-height:1.5em;
+	padding:0 0 20px 0;
+}
+li:last-child {
+	padding:0 0 20px 0;
+}
+
+/* ---------------------------------
+   Quoting, citing, and highlighting 
+   --------------------------------- */
+sub, sup {
+	font-size:.5em;
+	padding-left:2px;
+}
+sub {  /* subscript styling */
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size:.75em;
+	line-height: 1;
+	vertical-align:sub;
+}
+sup { /* superscript styling */
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size:.75em;
+	line-height: 1;
+	vertical-align:super;
+}
+q {
+	quotes:'"' '"' "'" "'";
+}
+q:before {
+	content:open-quote;
+}
+q:after {
+	content:close-quote;
+}
+blockquote {
+	quotes:'"' '"' "'" "'";
+	font-size:1.5em;
+	font-weight: 300;
+	font-style: italic;
+	line-height: 1.5em;
+	padding:30px 20%;
+}
+			blockquote:before, blockquote:after {
+				content: none;
+			}
+			blockquote + p {
+				font-family: 'Roboto', sans-serif;
+				font-size:1.15em;
+				line-height: 1.5em;
+				padding: 0 0 0 60%;
+			}
+			blockquote + p + p {
+				font-size:.75em;
+				font-weight:300;
+				font-style: italic;
+				line-height: 1;				
+				padding: 0 0 40px 60%;
+			}
+.highlight {
+	background:#eef441;
+}
+
+img { /* images will stretch to the width of their parent */
+	max-width:100%;
+	padding: 10px 0;
+}
+			img + figcaption {
+				font-family: 'Roboto', sans-serif;
+				font-size:.75em;
+				line-height: 1;
+				max-width:100%;
+				padding:0 0 30px 0;
+			}
+cite { /* ensure cross browser consistency */
+	font-family:'Roboto', sans-serif;
+	font-style:italic;
+}
+			sup > cite, sup > cite > a {
+				font-family: 'Roboto', sans-serif;
+				font-style:normal;
+			}
+/* ---------------------------------
+   Forms
+   --------------------------------- */
+form {	
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	max-width:100%;
+	padding:30px;
+}
+form > p, label, input, textarea {
+	font-family: 'Merriweather Sans', Helvetica, Arial, sans-serif;
+	font-size:1em;
+}
+form > p {	
+	padding-bottom:5px;
+}
+input, textarea {	
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin:10px 0 30px 0;
+	padding:10px;
+	border:1px solid #ccc;	
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
+input[type=text], textarea {	
+	display:block;
+	width:100%;
+}
+input[type=radio] {
+	margin-right: 10px;
+}
+			input[type=radio] + label {
+				margin-right:30px;
+			}
+input[type=checkbox] {
+	margin-right: 10px;
+}
+			input[type=checkbox] + label {
+				margin-right:30px;
+			}
+button, input[type=submit], input[type=reset]{
+	border:none;
+	padding:10px 20px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	vertical-align: middle;
+}
+button {
+	background:#333;
+	color:#fff;
+}
+input[type=submit] {
+	background:#4253f4;
+	color:#fff;
+}
+input[type=reset] {
+	font-size:.75em;
+	background:#ccc;
+	color:#fff;
+	margin-left:15px;
+}
+
+/* ---------------------------------
+   Tables
+   --------------------------------- */
+table {
+	margin:0 30px;
+}
+table tr th, table tr td {
+	font-family: 'Merriweather Sans', Helvetica, Arial, sans-serif;
+	font-size:1em;
+}
+tr:nth-child(odd) {
+	background:#fff;
+}
+th, td {
+	padding:15px;
+	vertical-align: middle;
+}
+th {
+	border:1px solid #aaa;
+	background:#bbb;
+}
+td {	
+	border:1px solid #ccc;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	ELEMENT STYLING
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ---------------------------------
+   Header and footer 
+   --------------------------------- */
+header.main {
+	text-align:center;
+}
+header.main p {
+	font-style:italic;
+}
+footer.main {
+	margin:30px auto;
+}
+footer.main p {
+	font-family: 'Roboto', sans-serif;
+	font-size:.75em;
+	text-align: center;
+	padding-bottom: 0;
+}
+footer.main p span {
+	font-family: 'Roboto', sans-serif;
+	font-size:.75em;
+}
+
+			/* ---------------------------------
+			   Header navigation 
+			   --------------------------------- */
+			header.main nav {
+				width:100%;
+				text-align:right;	
+				background:#eed581;
+				font-size:.75em;
+				padding:10px;
+			}
+			header.main nav ul {
+				float:right;
+				list-style: none;
+				margin:0 auto;
+				padding-right:40px;
+			}
+			header.main nav ul li {
+				float:left;
+				line-height:1em;
+				padding:7px 50px 0 0;
+				color:#bf7636;
+				vertical-align: middle;
+			}
+			header.main nav ul li:last-child{
+				padding:0 0 0 0;
+			}
+			header.main nav ul li a {
+				color:#bf7636;
+				text-decoration: none;
+			}
+						button.user-logged-in, button.user-logged-out {				
+							border:none;
+							border-radius:30px;
+							font-size:1em;
+							font-family: 'Roboto Condensed', sans-serif;
+							font-weight: bold;
+							text-transform: uppercase;
+							padding:5px 15px;
+							vertical-align: middle;
+						}
+						button.user-logged-in a, button.user-logged-out a {
+							color:#fff !important;
+						}
+						button.user-logged-in {
+							background:#bf7636;
+						}
+						button.user-logged-in:hover {
+							background:#aa6930;
+						}
+						button.user-logged-out {
+							background:#5d9624;
+						}
+						button.user-logged-out:hover {
+							background:#50811e;
+						}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	CLASS HELPERS
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.block{display:block;}
+.inline {display:inline;}
+.rounded-border {border-radius:10px;}
+.float-left{float:left;}
+.float-right{float:right;}
+.clearfix::after { /* clears a floated element -- see https://www.w3schools.com/howto/howto_css_clearfix.asp for details */
+	content: "";
+    clear: both;
+    display: table;
+}
+.element-center {margin:0 auto !important;}
+.text-center{text-align:center;}
+.text-right {text-align: right;}
+.padded {padding:30px;}
+.mbp-normalize-sizing { /* normalizes sizing behavior for margins, border, padding for cross-browser predictability */
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}

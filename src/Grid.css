@@ -1,0 +1,240 @@
+/* 
+	FeBe CSS Grid
+		VERSION		1.1.0
+		AUTHOR 		Amy Coleman
+		COMPANY		Amy Works
+		URL 		http://amy.works/febe-css-grid/demo
+		GIT REPO	https://github.com/amyworks/febe-css-grid.git
+		LICENSE		GNU General Public License 3.0
+*/
+
+/* -----------------------
+	Normalize
+   ----------------------- */
+
+.fg-row {
+	max-width:1000px;
+	margin:0 auto;
+}
+.fg-full-width-row {
+	width:100%;
+	margin:0 auto;
+}
+.fg-row-padded {
+	max-width:1200px;
+	margin: 30px auto;
+}
+.fg-row-padded h2:nth-child(2) {
+	padding-top:100px;
+}
+.fg-col {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float:left;
+}
+.fg-col-padded {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float:left;
+	padding:20px;
+}
+
+
+/* -----------------------
+	Half columns
+   ----------------------- */
+.half, .two-quarter, .three-sixth {
+	width:47%;	
+	margin-right:6%;
+}
+.half:last-child, .two-quarter:last-child, .three-sixth:last-child {
+	margin-right:0;
+}
+
+/* -----------------------
+	Third columns
+   ----------------------- */
+.third, .two-sixth {
+	width:29.33%;	
+	margin-right:6%;
+}
+.two-third, .four-sixth {
+	width:64.66%;
+	margin-right:6%;
+}
+.third:last-child, .two-sixth:last-child {
+	width:29.34%;
+	margin-right:0;
+}
+.two-third:last-child, .four-sixth:last-child {
+	width:64.67%;
+	margin-right:0;
+}
+
+/* -----------------------
+	Quarter columns
+   ----------------------- */
+.quarter {
+	width:20.5%;	
+	margin-right:6%;
+}
+.three-quarter {
+	width:73.5%;
+	margin-right:6%;
+}
+.quarter:last-child, .three-quarter:last-child {
+	margin-right:0;
+}
+
+/* -----------------------
+	Fifth columns
+   ----------------------- */
+.fifth {
+	width:16%;	
+	margin-right:5%;
+}
+.two-fifth {
+	width:37%;
+	margin-right:5%;
+}
+.three-fifth {
+	width:58%;
+	margin-right:5%;
+}
+.four-fifth {
+	width:79%;
+	margin-right:5%;
+}
+.fifth:last-child, .two-fifth:last-child, .three-fifth:last-child, .four-fifth:last-child {
+	margin-right:0;
+}
+
+/* -----------------------
+	Sixth columns
+   ----------------------- */
+.sixth {
+	width:11.66%;	
+	margin-right:6%;
+}
+.five-sixth {
+	width:82.33%;
+	margin-right:6%;
+}
+.sixth:last-child {
+	width:11.67%;
+	margin-right:0;
+}
+.five-sixth:last-child {
+	width:82.34%;
+	margin-right:0;
+}
+
+
+
+/*==============================================
+
+	RESPONSIVE TWEAKS
+
+  ==============================================*/
+
+/* -----------------------
+	Tablets - Landscape
+   ----------------------- */
+@media screen and (max-width: 1199px) {
+	.fg-row {
+		margin:0 50px;
+	}
+	.third, .two-sixth, .two-third, .four-sixth, .sixth, .five-sixth {
+		width:29.33%;	
+		margin-right:6%;
+	}
+	.third:last-child, .two-sixth:last-child, .two-third:last-child, .four-sixth:last-child, .sixth:last-child, .five-sixth:last-child {
+		margin-right:0;
+	}
+	.quarter, .three-quarter, .fifth, .two-fifth, .three-fifth, .four-fifth {
+		width:47%;
+		margin-right:6%;
+	} 
+	.quarter:last-child, .three-quarter:last-child, .fifth:last, .two-fifth:last-child, .three-fifth:last-child, .four-fifth:last-child {
+		margin-right:0;
+	}
+
+}
+
+/* -----------------------
+	Tablets - Portrait
+   ----------------------- */
+@media screen and (max-width: 960px) {
+	.fg-row {
+		margin:0 30px;
+	}
+	.third:last-child, .two-sixth:last-child, .two-third:last-child, .four-sixth:last-child, .quarter:last-child, .three-quarter:last-child, 
+	.fifth:last-child, .two-fifth:last-child, .three-fifth:last-child, .four-fifth:last-child, .sixth:last-child, .five-sixth:last-child {
+		margin-right:0;
+	}
+	/* CUSTOM ELEMENTS */
+	h3 {
+		font-size: 1.5em;
+	}
+}
+
+/* -----------------------
+	Smartphones - Landscape
+   ----------------------- */
+@media screen and (max-width: 780px) {
+	.fg-row {
+		margin:0 30px;
+	}
+	.half, .two-quarter, .three-sixth, .third, .two-sixth, .two-third, .four-sixth, .quarter, 
+	.three-quarter, .fifth, .two-fifth, .three-fifth, .four-fifth, .sixth, .five-sixth,
+	.half:last-child, .two-quarter:last-child, .three-sixth:last-child, .third:last-child, 
+	.two-sixth:last-child, .two-third:last-child, .four-sixth:last-child, .quarter:last-child, 
+	.three-quarter:last-child, .fifth:last-child, .two-fifth:last-child, .three-fifth:last-child, 
+	.four-fifth:last-child, .sixth:last-child, .five-sixth:last-child  {
+		width:100%;
+	}
+	.third:last-child, .two-sixth:last-child, .two-third:last-child, .four-sixth:last-child, .quarter:last-child, .three-quarter:last-child, 
+	.fifth:last-child, .two-fifth:last-child, .three-fifth:last-child, .four-fifth:last-child, .sixth:last-child, .five-sixth:last-child {
+		margin-right:0;
+	}
+	/* CUSTOM ELEMENTS */
+	h3 {
+		font-size: 1.5em;
+	}
+}
+
+/* -----------------------
+	Smartphones
+   ----------------------- */
+@media screen and (max-width: 660px) {
+	.fg-row {
+		margin:0 17px;
+	}
+	.fg-col {
+		float:none;
+		padding:30px;
+	}
+	.half, .two-quarter, .three-sixth, .third, .two-sixth, .two-third, .four-sixth, .quarter, 
+	.three-quarter, .fifth, .two-fifth, .three-fifth, .four-fifth, .sixth, .five-sixth,
+	.half:last-child, .two-quarter:last-child, .three-sixth:last-child, .third:last-child, 
+	.two-sixth:last-child, .two-third:last-child, .four-sixth:last-child, .quarter:last-child, 
+	.three-quarter:last-child, .fifth:last-child, .two-fifth:last-child, .three-fifth:last-child, 
+	.four-fifth:last-child, .sixth:last-child, .five-sixth:last-child  {
+		width:100%;
+	}
+
+	/* CUSTOM ELEMENTS */
+	body {
+		background-size:100%;
+		width:100%;
+	}
+	header.main h1 {
+		font-size:1.5em;
+	}
+	header.main p {
+		font-size:.75em;
+	}
+
+}
