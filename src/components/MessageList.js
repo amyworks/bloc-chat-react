@@ -39,8 +39,8 @@ class MessageList extends Component {
    		timestamp = parseInt(timestamp, 10);
       let x = new Date(timestamp);
       let year = x.getFullYear();
-      let month = months[x.getMonth() - 1];
-      let day = days[x.getDay() - 1];
+      let month = months[x.getMonth()];
+      let day = days[x.getDay()];
       let date = x.getDate();
    		let hour = x.getHours();
       let meridiem = '';
@@ -53,7 +53,6 @@ class MessageList extends Component {
           hour = hour - 12;
           meridiem = 'pm'
         }else{
-          hour = hour;
           meridiem = 'am'
         }
    		let minutes = x.getMinutes() >= 10 ? x.getMinutes() : '0' + x.getMinutes();      
