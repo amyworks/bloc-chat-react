@@ -125,7 +125,7 @@ form.create-chatroom input[type=text] {
   vertical-align: middle;
   margin-right:10px;
 }
-form.create-chatroom input[type=submit] {
+form.create-chatroom input[type=submit], section#send-message input[type=submit] {
   display:inline-block;
   background:#732c02;
   border:none;
@@ -305,4 +305,54 @@ div.user-bio p {
 }
 form.login-form input {
   display:block;
+}
+
+/* 
+-----------------------------
+
+  Send Message Styles 
+
+----------------------------- 
+*/
+section#send-message {
+  position:absolute;
+  bottom:0;
+  background:rgba(255,255,255,0.5);
+  padding:20px;
+}
+section#send-message h2, section#send-message form {
+  padding:0;
+}
+section.two-third-send-message {
+  margin-left:29.4%;
+  width:70.45%;
+}
+section#send-message input[type=submit] {
+  float:right;
+  font-size:1em;
+}
+
+section#send-message input[type=text], section#send-message button {
+  display: inline-block;
+}
+section#send-message input[type=text] {
+  width:85%;
+  margin:10px 10px 5px 0;
+}
+section#send-message p {
+  margin:0;
+  font-style: italic;
+  font-size:.75em;
+}
+section#send-message p span {
+  padding:0 5px;
+}
+section#send-message button {
+  padding:6px 8px;
+  font-size:1em;
+  background:#ccc;
+  vertical-align: middle;
+}
+section#send-message button.image-linked {
+  background:#5d9624;
 }

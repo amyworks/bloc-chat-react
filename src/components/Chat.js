@@ -22,8 +22,8 @@ class Chat extends Component {
 				<MessageList
 					activeRoomId={this.props.activeRoomId}
 					activeRoomName={this.props.activeRoomName}
-					userLoggedIn={this.props.userLoggedIn}
-					username={this.props.username}
+					isLoggedIn={this.props.isLoggedIn}					
+	        		userDisplayName={this.props.userDisplayName}
 					userAvatar={this.props.userInfo.userAvatar}
 					guestAvatar={this.props.guestAvatar}
 					firebase={firebase} />

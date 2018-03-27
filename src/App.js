@@ -4,7 +4,6 @@ import User from './components/User.js';
 import Landing from './components/Landing';
 import RoomList from './components/RoomList';
 import Chat from './components/Chat';
-import Login from './components/Login';
 import Profile from './components/Profile';
 import './Reset.css';
 import './Grid.css';
@@ -55,7 +54,7 @@ class App extends Component {
 				this.setState({ user: user.displayName.split(" ")[0], userId: user.uid, isLoggedIn:true });
 				this.setUserInfo();
 			}else{
-				this.setState({ user:'Guest', userId: null, isLoggedIn: false})
+				this.setState({ user:`Guest-${Math.floor(Math.random() * 80)}`, userDisplayName:`Guest-${Math.floor(Math.random() * 80)}`, userId: null, isLoggedIn: false})
 			}
 		});		
     }
@@ -103,8 +102,7 @@ class App extends Component {
 	        		</section>
 		        	<Switch>
 			        	<Route exact path="/" component={Landing} />
-			        	<Route path="/chat" render={props => <Chat {...this.state} />} />
-			        	<Route path="/login" render={props => <Login {...this.state} />} />		        	
+			        	<Route path="/chat" render={props => <Chat {...this.state} />} />	        	
 			        	<Route path="/profile" render={props => <Profile {...this.state} />} />
 		        	</Switch>
 		        </main>
