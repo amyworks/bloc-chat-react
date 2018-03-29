@@ -19,11 +19,11 @@ class App extends Component {
      		activeRoomDescription: '',
      		activeRoomId: '',
      		isLoggedIn: '',
-     		user: '',
      		userId: '',
      		userDisplayName: '',
-     		userInfo: {},
-     		guestAvatar: 'https://i.imgur.com/gOawD3s.png'
+     		userInfo: {
+     			userAvatar: 'https://i.imgur.com/gOawD3s.png'
+     		}
      	};
 
      	this.handleRoomSelect = this.handleRoomSelect.bind(this);
@@ -55,7 +55,11 @@ class App extends Component {
 				this.setState({ user: user.displayName.split(" ")[0], userId: user.uid, isLoggedIn:true });
 				this.setUserInfo();
 			}else{
-				this.setState({ user:'Guest', userId: null, isLoggedIn: false})
+				this.setState({ userDisplayName:`Guest-${Math.floor(Math.random() * 80)}`, userId:'', isLoggedIn:false,
+					userInfo: {
+     					userAvatar: 'https://i.imgur.com/gOawD3s.png'
+     				}
+				});
 			}
 		});		
     }
@@ -68,8 +72,7 @@ class App extends Component {
 			firebase.database().ref(`users/${uid}`).on('value', snapshot => {
 				const userInfo = snapshot.val();
 				userInfo.key = uid;
-				this.setState({	
-					user: user, 
+				this.setState({ 
 					userId: uid, 
 					isLoggedIn: true,			
 					userDisplayName: userInfo.userDisplayName,
@@ -88,7 +91,11 @@ class App extends Component {
     handleLogout(e) {
     	console.log("logout fired")
 		auth.signOut().then(() => {
-			this.setState({ user:'Guest', userId:'', isLoggedIn:false });
+			this.setState({ userDisplayName:`Guest-${Math.floor(Math.random() * 80)}`, userId:'', isLoggedIn:false, 
+				userInfo: {
+     				userAvatar: 'https://i.imgur.com/gOawD3s.png'
+     			}
+     		});
 		});
     }
 

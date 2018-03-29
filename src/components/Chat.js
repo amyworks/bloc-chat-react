@@ -23,7 +23,7 @@ class Chat extends Component {
 					activeRoomId={this.props.activeRoomId}
 					activeRoomName={this.props.activeRoomName}
 					userLoggedIn={this.props.userLoggedIn}
-					username={this.props.username}
+					userDisplayName={this.props.userDisplayName}
 					userAvatar={this.props.userInfo.userAvatar}
 					guestAvatar={this.props.guestAvatar}
 					firebase={firebase} />

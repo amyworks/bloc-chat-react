@@ -5,7 +5,7 @@ class Profile extends Component {
 	    return (
 	    	<section id="user-profile" className={(this.props.userLoggedIn ? "fg-col two-third show-profile" : "no-profile")}>
 				<img src={this.props.userInfo.userAvatar} className="user-avatar" alt="" />
-				<h2 className="username">{this.props.userInfo.username}</h2>
+				<h2 className="username">{this.props.userInfo.userDisplayName}</h2>
 				<p className="user-role"><i className="fas fa-user"></i> {this.props.userInfo.userRole}</p>
 				
 				<div className="user-bio">
