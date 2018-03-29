@@ -18,11 +18,11 @@ class App extends Component {
      		activeRoomDescription: '',
      		activeRoomId: '',
      		isLoggedIn: '',
-     		user: '',
      		userId: '',
      		userDisplayName: '',
-     		userInfo: {},
-     		guestAvatar: 'https://i.imgur.com/gOawD3s.png'
+     		userInfo: {
+     			userAvatar: 'https://i.imgur.com/gOawD3s.png'
+     		}
      	};
 
      	this.handleRoomSelect = this.handleRoomSelect.bind(this);
@@ -54,25 +54,46 @@ class App extends Component {
 				this.setState({ user: user.displayName.split(" ")[0], userId: user.uid, isLoggedIn:true });
 				this.setUserInfo();
 			}else{
-				this.setState({ user:`Guest-${Math.floor(Math.random() * 80)}`, userDisplayName:`Guest-${Math.floor(Math.random() * 80)}`, userId: null, isLoggedIn: false})
+				this.setState({ userDisplayName:`Guest-${Math.floor(Math.random() * 80)}`, userId:'', isLoggedIn:false,
+					userInfo: {
+     					userAvatar: 'https://i.imgur.com/gOawD3s.png'
+     				}
+				});
 			}
 		});		
     }
 
     handleLogin(e) {
     	console.log("login fired")
-		auth.signInWithPopup(provider).then((result) => {
-			const user = result.user.displayName.split(" ")[0];
-			const uid = result.user.uid;
-			this.setState({ user: user, userId: uid, isLoggedIn:true });
+		auth.signInWithPopup(provider).then( (result) => {
+			const uid = result.user.uid;			
+			firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+				const userInfo = snapshot.val();
+				userInfo.key = uid;
+				this.setState({ 
+					userId: uid, 
+					isLoggedIn: true,			
+					userDisplayName: userInfo.userDisplayName,
+					userInfo: {
+						userAlignment: userInfo.userAlignment,
+						userAvatar: userInfo.userAvatar,
+						userBio: userInfo.userBio,
+						userId: userInfo.userId,
+						userRole: userInfo.userRole
+					}
+				});
+			});
 		});
-		this.setUserInfo();
     }
 
     handleLogout(e) {
     	console.log("logout fired")
 		auth.signOut().then(() => {
-			this.setState({ user:'Guest', userId:'', isLoggedIn:false });
+			this.setState({ userDisplayName:`Guest-${Math.floor(Math.random() * 80)}`, userId:'', isLoggedIn:false, 
+				userInfo: {
+     				userAvatar: 'https://i.imgur.com/gOawD3s.png'
+     			}
+     		});
 		});
     }
 

@@ -73,28 +73,32 @@ class MessageList extends Component {
 	   					{
 	   						this.state.messages.map((message) =>
 	      						<div className={(`${message.sentBy}` === this.props.userDisplayName ? "chatroom-message sentby-user" : "chatroom-message sentby-other")} key={message.key}>   							
-	      							<p className={(`${message.sentBy}` === this.props.userDisplayName ? "chatroom-message-content sentby-user" : "chatroom-message-content sentby-other")}>
-                        {message.content}<img className={`${message.attachedImg}` === null ? 'no-image' : "chatroom-image"} src={message.attachedImg} alt="" />
-                      </p>
+  	      						<div className="message-content-fix">
+                      	<p className={(`${message.sentBy}` === this.props.userDisplayName ? "chatroom-message-content sentby-user" : "chatroom-message-content sentby-other")}>
+                          {message.content}<img className={`${message.attachedImg}` === null ? 'no-image' : "chatroom-image"} src={message.attachedImg} alt="" />
+                        </p>
+                      </div>
 
                       <p className="chatroom-username">
-                        {(`${message.sentBy}` === this.props.userDisplayName ? '' : <img className="chatroom-avatar sentby-other" src={message.userAvatar} alt={message.userDisplayName} />)}
+                        {(`${message.sentBy}` === this.props.userDisplayName ? '' : <img className="chatroom-avatar sentby-other" src={message.userAvatar} alt={message.sentBy} />)}
+                        {(`${message.sentBy}` === this.props.userDisplayName ? `${message.sentBy}` : '')}                        
                         {(`${message.sentBy}` === this.props.userDisplayName ? '' : `${message.sentBy}`)}
-                        <span className="chatroom-timestamp">{this.prettyTime(`${message.sentAt}`)} </span>
-                        {(`${message.sentBy}` === this.props.userDisplayName ? <img className="chatroom-avatar sentby-user" src={message.userAvatar} alt={message.userDisplayName} /> : '')}
+                        <span className="chatroom-timestamp">{this.prettyTime(`${message.sentAt}`)}</span>
+                        {(`${message.sentBy}` === this.props.userDisplayName ? <img className="chatroom-avatar sentby-user" src={message.userAvatar} alt={message.sentBy} /> : '')}
                       </p>
 	      						</div>
 	      					)
 	   					}              
 	   			</section>
-          {this.props.activeRoomId === '' ? '' :
-          <SendMessage 
-            userDisplayName={this.props.userDisplayName}
-            activeRoomId={this.props.activeRoomId}
-            userAvatar={this.props.userAvatar}
-            guestAvatar={this.props.guestAvatar}
-            isLoggedIn={this.props.isLoggedIn}
-            firebase={firebase} />
+          {
+            this.props.activeRoomId === '' ? '' :
+              <SendMessage 
+                userDisplayName={this.props.userDisplayName}
+                activeRoomId={this.props.activeRoomId}
+                userAvatar={this.props.userAvatar}
+                guestAvatar={this.props.guestAvatar}
+                isLoggedIn={this.props.isLoggedIn}
+                firebase={firebase} /> 
           }
    			</section>
    		);

@@ -31,31 +31,31 @@ class SendMessage extends Component {
 		let content = this.state.isImageLink ? null : this.state.messageContent;
 		const sentAt = d.getTime();
 		const sentBy = this.props.userDisplayName;
-		const userAvatar = this.props.isLoggedIn ? this.props.userAvatar : this.props.guestAvatar;
 		const roomId = this.props.activeRoomId;
 		this.messagesRef.push({
 			attachedImg: attachedImg,
 			content: content,
 			sentAt: sentAt,
 			sentBy: sentBy,
-			userAvatar: userAvatar,
+			userAvatar: this.props.userAvatar,
 			roomId: roomId
 		});
 		this.setState({
 			messageContent: '',
 			isImageLink: false
-		})
+		});		
+    	document.getElementById("message-input").value = "";
 	}
 
 	render() {
 	    return (
 			<section id="send-message" className="fg-col two-third-send-message">
 				<form onSubmit={this.sendMessage}>
-					<input type="text" placeholder="Write a message here" onChange={this.newMessage} />
+					<input type="text" placeholder="Write a message here" onChange={this.newMessage} id="message-input" />
+					<input type="submit" />
 					<button className={this.state.isImageLink ? 'image-linked' : 'text-message'} onClick={(e) => this.setMessageType(e)}>
 						<span className="fas fa-file-image"></span>
 					</button>
-					<input type="submit" />
 					<p>To send a picture message, paste ONLY a link to your image and click the <span className="fas fa-file-image"></span> button to the right of the text field</p>
 				</form>
 		    </section>

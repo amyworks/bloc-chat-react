@@ -1,8 +1,6 @@
 /* 
 -----------------------------
-
   Landing Styles 
-
 ----------------------------- 
 */
 .taco-landing {
@@ -53,9 +51,7 @@
 
 /* 
 -----------------------------
-
   RoomList Styles 
-
 ----------------------------- 
 */
 #chatroom-list {
@@ -144,9 +140,7 @@ form.create-chatroom input[type=submit]:hover {
 
 /* 
 -----------------------------
-
   MessageList Styles 
-
 ----------------------------- 
 */
 h3.chatroom-name {
@@ -180,6 +174,7 @@ section.two-third-chatroom {
       }
       .chatroom-message {
         margin-bottom:20px;
+        width:100%;
       }
       .chatroom-username, .chatroom-timestamp {
         font-size:.75em;
@@ -188,6 +183,8 @@ section.two-third-chatroom {
       .chatroom-username {
         font-weight:bold;
         vertical-align: middle;
+        width:100%;
+        display:block;
       }
       .chatroom-avatar {
         width:40px;
@@ -232,9 +229,15 @@ section.two-third-chatroom {
               color:#fff;
               font-weight: 100;
               margin-right:50px;
-            }
-            div.chatroom-message.sentby-user {
               float:right;
+            }
+            div.message-content-fix {
+              width:100%;              
+            }
+            div.message-content-fix:after {
+              display:table;
+              clear: both;
+              content: '';              
             }
             div.chatroom-message.sentby-user p.chatroom-username {
               text-align:right;
@@ -260,9 +263,7 @@ section.two-third-chatroom {
 
 /* 
 -----------------------------
-
   Profile Styles 
-
 ----------------------------- 
 */
 #user-profile {
@@ -295,9 +296,7 @@ div.user-bio p {
 
 /* 
 -----------------------------
-
   Login Styles 
-
 ----------------------------- 
 */
 #login {
@@ -309,9 +308,13 @@ form.login-form input {
 
 /* 
 -----------------------------
+<<<<<<< HEAD
 
   Send Message Styles 
 
+=======
+  Send Message Styles 
+>>>>>>> checkpoint-6-bloc-chat-react-send-messages
 ----------------------------- 
 */
 section#send-message {
