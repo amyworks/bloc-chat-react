@@ -67,7 +67,6 @@ class App extends Component {
     handleLogin(e) {
     	console.log("login fired")
 		auth.signInWithPopup(provider).then( (result) => {
-			const user = result.user.displayName.split(" ")[0];
 			const uid = result.user.uid;			
 			firebase.database().ref(`users/${uid}`).on('value', snapshot => {
 				const userInfo = snapshot.val();
