@@ -62,12 +62,27 @@ class App extends Component {
 
     handleLogin(e) {
     	console.log("login fired")
-		auth.signInWithPopup(provider).then((result) => {
+		auth.signInWithPopup(provider).then( (result) => {
 			const user = result.user.displayName.split(" ")[0];
-			const uid = result.user.uid;
-			this.setState({ user: user, userId: uid, isLoggedIn:true });
+			const uid = result.user.uid;			
+			firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+				const userInfo = snapshot.val();
+				userInfo.key = uid;
+				this.setState({	
+					user: user, 
+					userId: uid, 
+					isLoggedIn: true,			
+					userDisplayName: userInfo.userDisplayName,
+					userInfo: {
+						userAlignment: userInfo.userAlignment,
+						userAvatar: userInfo.userAvatar,
+						userBio: userInfo.userBio,
+						userId: userInfo.userId,
+						userRole: userInfo.userRole
+					}
+				});
+			});
 		});
-		this.setUserInfo();
     }
 
     handleLogout(e) {
