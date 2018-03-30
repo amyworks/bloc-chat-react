@@ -26,25 +26,29 @@ class SendMessage extends Component {
 
 	sendMessage(e) {
 		e.preventDefault();
-		let d = new Date();
-		let attachedImg = this.state.isImageLink ? this.state.messageContent : null; 
-		let content = this.state.isImageLink ? null : this.state.messageContent;
-		const sentAt = d.getTime();
-		const sentBy = this.props.userDisplayName;
-		const roomId = this.props.activeRoomId;
-		this.messagesRef.push({
-			attachedImg: attachedImg,
-			content: content,
-			sentAt: sentAt,
-			sentBy: sentBy,
-			userAvatar: this.props.userAvatar,
-			roomId: roomId
-		});
-		this.setState({
-			messageContent: '',
-			isImageLink: false
-		});		
-    	document.getElementById("message-input").value = "";
+		if(this.state.messageContent === ''){
+			return '';
+		}else{
+			let d = new Date();
+			let attachedImg = this.state.isImageLink ? this.state.messageContent : null; 
+			let content = this.state.isImageLink ? null : this.state.messageContent;
+			const sentAt = d.getTime();
+			const sentBy = this.props.userDisplayName;
+			const roomId = this.props.activeRoomId;
+			this.messagesRef.push({
+				attachedImg: attachedImg,
+				content: content,
+				sentAt: sentAt,
+				sentBy: sentBy,
+				userAvatar: this.props.userAvatar,
+				roomId: roomId
+			});
+			this.setState({
+				messageContent: '',
+				isImageLink: false
+			});		
+	    	document.getElementById("message-input").value = "";
+	    }
 	}
 
 	render() {
