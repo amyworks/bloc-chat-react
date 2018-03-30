@@ -46,7 +46,7 @@ class Profile extends Component {
 			});			
 			this.setState({[`new${field}`]: '', [`edit${field}`]: false, isURL: true});
 		}
-		document.getElementById(`new${field}`).value = "";
+		document.getElementById(`${field}`).value = '';
 		document.getElementById('chars-remaining').innerHTML = '';
 	}
 
@@ -88,7 +88,7 @@ class Profile extends Component {
 				<p className="user-role"><i className="fas fa-user"></i> {this.props.userInfo.userRole}</p>
 				<p><b>Alignment</b> {this.props.userInfo.userAlignment} <button onClick={(e) => this.enterEditMode(e, 'Alignment')}><i className="fas fa-pencil-alt"></i></button></p>
 					<form className={this.state.editAlignment ? 'new-alignment' : 'hidden'} onSubmit={(e) => this.updateField(e, 'Alignment')}>
-						<select id="newDisplayName" onChange={(e) => this.changeField(e, 'DisplayName')}>
+						<select id="Alignment" onChange={(e) => this.changeField(e, 'Alignment')}>
 							<option value="Neutral Taco">Neutral Taco</option>
 							<option value="Lawful Neutral Taco">Lawful Neutral Taco</option>
 							<option value="Chaotic Neutral Taco">Chaotic Neutral Taco</option>
