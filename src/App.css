@@ -155,9 +155,9 @@ section.no-messages, img.no-image {
 section.two-third-chatroom {
   margin-top:20px;
   margin-right:6%;
-  margin-bottom:0;
+  margin-bottom:100px;
   width:58.66%;
-  height:80vh;
+  max-height:72vh;
   overflow: auto;
   padding:30px;
   background:rgba(255,255,255,0.5);
