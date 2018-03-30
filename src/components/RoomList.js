@@ -29,7 +29,8 @@ class RoomList extends Component {
   }
 
   createRoom(e) {
-    let newRoomName = this.state.newRoom;
+    e.preventDefault();
+    let newRoomName = this.state.newRoom.length >= 3 ? this.state.newRoom : `Taco Chat ${Math.floor(Math.random() * 1000)}`;
     let newRoomSlug = newRoomName.replace(/\s+/g, '-').toLowerCase();
     this.roomsRef.push({
       name: newRoomName,

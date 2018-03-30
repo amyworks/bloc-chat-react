@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import NewUserNotice from './components/NewUserNotice.js';
 import User from './components/User.js';
 import Landing from './components/Landing';
 import RoomList from './components/RoomList';
@@ -22,39 +23,46 @@ class App extends Component {
      		userDisplayName: '',
      		userInfo: {
      			userAvatar: 'https://i.imgur.com/gOawD3s.png'
-     		}
+     		},
+     		userNew: ''
      	};
 
      	this.handleRoomSelect = this.handleRoomSelect.bind(this);
      	this.handleLogin = this.handleLogin.bind(this);
      	this.handleLogout = this.handleLogout.bind(this);
+     	this.dismissNewUserNotice = this.dismissNewUserNotice.bind(this);
     }
 
-    setUserInfo(){
-    	firebase.database().ref(`users/${this.state.userId}`).on('value', snapshot => {
-			const userInfo = snapshot.val();
-			userInfo.key = this.state.userId;
-			this.setState({				
-				userDisplayName: userInfo.userDisplayName,
-				userInfo: {
-					userAlignment: userInfo.userAlignment,
-					userAvatar: userInfo.userAvatar,
-					userBio: userInfo.userBio,
-					userId: userInfo.userId,
-					userRole: userInfo.userRole
-				}
+    setUserInfo(userId){
+    	console.log('set user info fired');
+    	if (this.state.userNew){
+    		return '';
+    	}else{
+	    	firebase.database().ref(`users/${userId}`).on('value', snapshot => {
+				const userInfo = snapshot.val();
+				userInfo.key = userId;
+				this.setState({				
+					userDisplayName: userInfo.userDisplayName,
+					userInfo: {
+						userAlignment: userInfo.userAlignment,
+						userAvatar: userInfo.userAvatar,
+						userBio: userInfo.userBio,
+						userId: userInfo.userId,
+						userRole: userInfo.userRole
+					}
+				});
 			});
-		});
+		}
     }
 
     componentDidMount() {
     	// Persist login state during refresh or re-render
 		auth.onAuthStateChanged((user) => {
 			if (user) {
-				this.setState({ user: user.displayName.split(" ")[0], userId: user.uid, isLoggedIn:true });
-				this.setUserInfo();
+				this.setState({ userId: user.uid, isLoggedIn:true });
+				this.setUserInfo(user.uid);
 			}else{
-				this.setState({ userDisplayName:`Guest-${Math.floor(Math.random() * 80)}`, userId:'', isLoggedIn:false,
+				this.setState({ userDisplayName:`Guest-${Math.floor(Math.random() * 80)}`, userId:'', isLoggedIn:false, userNew: true,
 					userInfo: {
      					userAvatar: 'https://i.imgur.com/gOawD3s.png'
      				}
@@ -66,29 +74,62 @@ class App extends Component {
     handleLogin(e) {
     	console.log("login fired")
 		auth.signInWithPopup(provider).then( (result) => {
-			const uid = result.user.uid;			
-			firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+			const users = firebase.database().ref(`users`);
+			const uid = result.user.uid;
+			users.orderByChild(`userId`).equalTo(uid).once('value', snapshot => {
 				const userInfo = snapshot.val();
-				userInfo.key = uid;
-				this.setState({ 
-					userId: uid, 
-					isLoggedIn: true,			
-					userDisplayName: userInfo.userDisplayName,
-					userInfo: {
-						userAlignment: userInfo.userAlignment,
-						userAvatar: userInfo.userAvatar,
-						userBio: userInfo.userBio,
-						userId: userInfo.userId,
-						userRole: userInfo.userRole
-					}
-				});
-			});
+				// If returning user, update state with user info
+				if(userInfo){
+					userInfo.key = uid;
+					this.setState({ 
+						userId: uid, 
+						isLoggedIn: true,			
+						userDisplayName: userInfo.userDisplayName,
+						userInfo: {
+							userAlignment: userInfo.userAlignment,
+							userAvatar: userInfo.userAvatar,
+							userBio: userInfo.userBio,
+							userId: userInfo.userId,
+							userRole: userInfo.userRole
+						},
+						userNew: false
+					});
+					firebase.database().ref(`users/${uid}`).update({
+						isLoggedIn: true,
+					});
+				}else {
+					// But if user is new, create a new user profile and update state with that info
+					firebase.database().ref(`users/${uid}`).set({
+						isLoggedIn: true,
+						userAlignment: 'Unaligned',
+						userAvatar: 'https://i.imgur.com/gOawD3s.png',
+						userBio: 'Write a short bio about yourself',
+						userDisplayName: result.user.displayName.split(" ")[0],
+						userId: uid,
+						userRole: 'Taco Fresco'
+					});
+					this.setState({
+						isLoggedIn: true,
+						userInfo: {
+							userAlignment: 'Unaligned',
+							userAvatar: 'https://i.imgur.com/gOawD3s.png',
+							userBio: 'Write a short bio about yourself',
+							userDisplayName: result.user.displayName.split(" ")[0],
+							userId: uid,
+							userRole: 'Taco Fresco'
+						}
+					});
+				}
+			})
 		});
     }
 
     handleLogout(e) {
     	console.log("logout fired")
 		auth.signOut().then(() => {
+			firebase.database().ref(`users/${this.state.userId}`).update({
+				isLoggedIn: false,
+			});
 			this.setState({ userDisplayName:`Guest-${Math.floor(Math.random() * 80)}`, userId:'', isLoggedIn:false, 
 				userInfo: {
      				userAvatar: 'https://i.imgur.com/gOawD3s.png'
@@ -102,9 +143,19 @@ class App extends Component {
 		this.setState({activeRoomId: selectRoomId, activeRoomName: selectRoomName, activeRoomDescription: selectRoomDescription});
 	}
 
+	dismissNewUserNotice() {
+		this.setState({userNew: false})
+	}
+
+	validateURL(string) {
+		const pattern = new RegExp(/[-a-zA-Z0-9@:%_+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&//=]*)?/gi);
+		return pattern.test(string);
+	}
+
 	render() {
 	    return (
 	    	<div className="App">
+	    		{this.state.userNew && this.state.isLoggedIn ? <NewUserNotice dismissNewUserNotice={this.dismissNewUserNotice} userDisplayName={this.state.userDisplayName} /> : ''}
 	        	<User
 	        		isLoggedIn={this.state.isLoggedIn}
 	        		userDisplayName={this.state.userDisplayName}
@@ -124,7 +175,7 @@ class App extends Component {
 		        	<Switch>
 			        	<Route exact path="/" component={Landing} />
 			        	<Route path="/chat" render={props => <Chat {...this.state} />} />	        	
-			        	<Route path="/profile" render={props => <Profile {...this.state} />} />
+			        	<Route path="/profile" render={props => <Profile {...this.state} validateURL={this.validateURL} firebase={firebase} />} />
 		        	</Switch>
 		        </main>
 	      	</div>

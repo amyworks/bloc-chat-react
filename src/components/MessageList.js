@@ -21,18 +21,30 @@ class MessageList extends Component {
 	    });
     }
 
+    updateMessageList(roomId) {
+      this.state[roomId] ? this.setState({messages: this.state[roomId]}) : this.createMessageList();
+    }
+
     componentDidMount() {
       this.createMessageList();	    
    	}
 
-   	componentWillReceiveProps() {
-      this.setState({messages: []})
+   	componentWillReceiveProps(nextProps) {
+      if(this.props.activeRoomId !== nextProps.activeRoomId) {
+        let saveMessages = this.state.messages;
+        this.setState({
+          messages: [],
+          [this.props.activeRoomId]: saveMessages
+        });
+      }
    	}
 
    	componentDidUpdate(prevProps, prevState) {
       if(prevProps.activeRoomId !== this.props.activeRoomId) {
-        this.createMessageList();
-   		}
+        this.updateMessageList(this.props.activeRoomId);
+   		}else if(prevProps.activeRoomId === this.props.activeRoomId) {
+        return '';
+      }
    	}
 
    	prettyTime(timestamp) {
