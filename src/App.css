@@ -297,55 +297,59 @@ div.user-bio p {
   font-weight:300;
 }
 #user-profile form {
-  text-align: left;
+  text-align: center;
+  padding:10px;
 }
 #user-profile input {
-  width:85%;
+  width:80%;
   display:inline-block;
   margin-bottom:5px;
 }
 #user-profile button {
   background:transparent;
-  color:#999;
+  color:#c69d79;
   padding:0;
-  font-size:.5em;
+  font-size:14px;
+  padding-bottom:20px;
   vertical-align: middle;
-  margin-left:10px;
 }
 .profile-avatar {
   position:relative;
 }
 .edit-avatar {
-  z-index:999;
-  position:absolute;
-  top:50%;
-  left:50%;
-}
-.edit-avatar:hover {
-  z-index:999;  
-}
-.edit-avatar {
   font-size:2em !important;
+  position:absolute;
+  margin-right:40px;
+  margin-bottom:40px;
+  z-index:999;
 }
 #avatar-error {
   font-size:.75em;
   color:#da4620;
 }
-#avatar-error:before {
-  font-style:none;
-  font-family: 'Font Awesome 5 Free';
-  content:'\f06a';
-  margin-right:5px;
-  font-weight: 900;
-}
 #user-profile button.form-function {
   font-size:1.5em;
+  padding:0;
+  margin-left:10px;
 }
 #user-profile button.form-function:hover {
   color:#da4620;
 }
 #user-profile button[type=submit]:hover {
   color:#5d9624;
+}
+#user-profile textarea {
+  height:200px;
+  margin-bottom:5px;
+}
+p#chars-remaining {
+  text-align:right;
+  display:inline-block;
+  font-size:.75em;
+  color:#5d9624;
+}
+.user-bio p {
+  text-align: left;
 }
 
 /* 

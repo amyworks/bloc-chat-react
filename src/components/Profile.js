@@ -24,6 +24,9 @@ class Profile extends Component {
 	changeField(e, field) {
 		e.preventDefault();
 		this.setState({[`new${field}`]: e.target.value});
+		if(`new${field}` === 'newBio'){
+			this.characterCountDown();
+		};
 	}
 
 	updateField(e, field) {
@@ -44,6 +47,7 @@ class Profile extends Component {
 			this.setState({[`new${field}`]: '', [`edit${field}`]: false, isURL: true});
 		}
 		document.getElementById(`new${field}`).value = "";
+		document.getElementById('chars-remaining').innerHTML = '';
 	}
 
 	enterEditMode(e, field) {
@@ -54,12 +58,20 @@ class Profile extends Component {
 	exitEditMode(e, field) {
 		e.preventDefault();
 		this.setState({[`edit${field}`]: false, isURL: true});
+		document.getElementById(`new${field}`).value = "";		
+		document.getElementById('chars-remaining').innerHTML = '';
+	}
+
+	characterCountDown() {
+		let charsRemaining = 999;
+		let newBio = this.state.newBio;
+		document.getElementById('chars-remaining').innerHTML = `${charsRemaining - newBio.length} characters remaining`
 	}
 	
 	render() {
 	    return (
 	    	<section id="user-profile" className={(this.props.userLoggedIn ? "fg-col two-third show-profile" : "fg-col two-third no-profile")}>
-				<p className="profile-avatar"><button className="edit-avatar" onClick={(e) => this.enterEditMode(e, 'Avatar')}><i className="fas fa-pencil-alt"></i></button><img src={this.props.userInfo.userAvatar} className="user-avatar" alt="" /></p>
+				<p className="profile-avatar"><img src={this.props.userInfo.userAvatar} className="user-avatar" alt="" /><button className="edit-avatar" onClick={(e) => this.enterEditMode(e, 'Avatar')}><i className="fas fa-pencil-alt"></i></button></p>
 					<form className={this.state.editAvatar ? 'new-avatar' : 'hidden'} onSubmit={(e) => this.updateField(e, 'Avatar')}>
 						<input id="newAvatar" type="text" placeholder="Paste a link to an image here" onChange={(e) => this.changeField(e, 'Avatar')} />
 						<button className="form-function" type="submit"><i className="fas fa-check-circle"></i></button>
@@ -74,16 +86,27 @@ class Profile extends Component {
 					</form>
 				<p className="user-role"><i className="fas fa-user"></i> {this.props.userInfo.userRole}</p>
 				<p><b>Alignment</b> {this.props.userInfo.userAlignment} <button onClick={(e) => this.enterEditMode(e, 'Alignment')}><i className="fas fa-pencil-alt"></i></button></p>
-						<form className={this.state.editAlignment ? 'new-alignment' : 'hidden'} onSubmit={(e) => this.updateField(e, 'Alignment')}>
-							<input id="newAlignment" type="text" onChange={(e) => this.changeField(e, 'Alignment')} />
-							<button className="form-function" type="submit"><i className="fas fa-check-circle"></i></button>
-							<button className="form-function" onClick={(e) => this.exitEditMode(e, 'Alignment')}><i className="fas fa-times-circle"></i></button>
-						</form>
+					<form className={this.state.editAlignment ? 'new-alignment' : 'hidden'} onSubmit={(e) => this.updateField(e, 'Alignment')}>
+						<select id="newDisplayName" onChange={(e) => this.changeField(e, 'DisplayName')}>
+							<option value="Neutral Taco">Neutral Taco</option>
+							<option value="Lawful Neutral Taco">Lawful Neutral Taco</option>
+							<option value="Chaotic Neutral Taco">Chaotic Neutral Taco</option>
+							<option value="Neutral Taco Good">Neutral Taco Good</option>
+							<option value="Lawful Taco Good">Lawful Taco Good</option>
+							<option value="Chaotic Taco Good">Chaotic Taco Good</option>
+							<option value="Lawful Taco Evil">Lawful Taco Evil</option>
+							<option value="Neutral Taco Evil">Neutral Taco Evil</option>
+							<option value="Chaotic Taco Evil">Chaotic Taco Evil</option>
+						</select>
+						<button className="form-function" type="submit"><i className="fas fa-check-circle"></i></button>
+						<button className="form-function" onClick={(e) => this.exitEditMode(e, 'Alignment')}><i className="fas fa-times-circle"></i></button>
+					</form>
 				
 				<div className="user-bio">
 					<h3>User Bio <button onClick={(e) => this.enterEditMode(e, 'Bio')}><i className="fas fa-pencil-alt"></i></button></h3>
-						<form className={this.state.editBio? 'new-bio' : 'hidden'} onSubmit={(e) => this.updateField(e, 'Bio')}>
-							<input id="newBio" type="textarea" onChange={(e) => this.changeField(e, 'Bio')} />
+						<form className={this.state.editBio ? 'new-bio' : 'hidden'} onSubmit={(e) => this.updateField(e, 'Bio')}>
+							<textarea id="newBio" onChange={(e) => this.changeField(e, 'Bio')} maxLength="1000" />
+							<p id="chars-remaining"></p>
 							<button className="form-function" type="submit"><i className="fas fa-check-circle"></i></button>
 							<button className="form-function" onClick={(e) => this.exitEditMode(e, 'Bio')}><i className="fas fa-times-circle"></i></button>
 						</form>
