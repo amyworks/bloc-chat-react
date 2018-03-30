@@ -1,3 +1,6 @@
+.hidden {
+  display:none;
+}
 /* 
 -----------------------------
   Landing Styles 
@@ -293,6 +296,57 @@ div.user-bio h3 {
 div.user-bio p {
   font-weight:300;
 }
+#user-profile form {
+  text-align: left;
+}
+#user-profile input {
+  width:85%;
+  display:inline-block;
+  margin-bottom:5px;
+}
+#user-profile button {
+  background:transparent;
+  color:#999;
+  padding:0;
+  font-size:.5em;
+  vertical-align: middle;
+  margin-left:10px;
+}
+.profile-avatar {
+  position:relative;
+}
+.edit-avatar {
+  z-index:999;
+  position:absolute;
+  top:50%;
+  left:50%;
+}
+.edit-avatar:hover {
+  z-index:999;  
+}
+.edit-avatar {
+  font-size:2em !important;
+}
+#avatar-error {
+  font-size:.75em;
+  color:#da4620;
+}
+#avatar-error:before {
+  font-style:none;
+  font-family: 'Font Awesome 5 Free';
+  content:'\f06a';
+  margin-right:5px;
+  font-weight: 900;
+}
+#user-profile button.form-function {
+  font-size:1.5em;
+}
+#user-profile button.form-function:hover {
+  color:#da4620;
+}
+#user-profile button[type=submit]:hover {
+  color:#5d9624;
+}
 
 /* 
 -----------------------------
@@ -304,6 +358,35 @@ div.user-bio p {
 }
 form.login-form input {
   display:block;
+}
+.new-user-notice {
+  width:100%;
+  background:#5d9624;
+  color:rgba(255,255,255,0.7);
+  text-align:center;
+  position:absolute;
+  top:0;
+  z-index:999;
+  padding:20px;
+  font-size:.75em;
+  font-weight: 100;
+}
+.new-user-notice a {
+  text-decoration: underline;
+  color:#fff;
+  margin-left:10px;
+}
+.dismiss {
+  float:right;
+  position:relative;
+  top:0;
+  right:40px;
+  background:none;
+  padding:0;
+  font-size:1.25em;
+}
+.dismiss:hover, .new-user-notice a:hover {
+  opacity:0.5;
 }
 
 /* 
