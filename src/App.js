@@ -31,47 +31,15 @@ class App extends Component {
      	this.handleLogout = this.handleLogout.bind(this);
     }
 
-    setUserInfo(){
-    	firebase.database().ref(`users/${this.state.userId}`).on('value', snapshot => {
-			const userInfo = snapshot.val();
-			userInfo.key = this.state.userId;
-			this.setState({				
-				userDisplayName: userInfo.userDisplayName,
-				userInfo: {
-					userAlignment: userInfo.userAlignment,
-					userAvatar: userInfo.userAvatar,
-					userBio: userInfo.userBio,
-					userId: userInfo.userId,
-					userRole: userInfo.userRole
-				}
-			});
-		});
-    }
-
-    componentDidMount() {
-    	// Persist login state during refresh or re-render
-		auth.onAuthStateChanged((user) => {
-			if (user) {
-				this.setState({ user: user.displayName.split(" ")[0], userId: user.uid, isLoggedIn:true });
-				this.setUserInfo();
-			}else{
-				this.setState({ user:'Guest', userId: null, isLoggedIn: false})
-			}
-		});		
-    }
-
-    handleLogin(e) {
-    	console.log("login fired")
-		auth.signInWithPopup(provider).then( (result) => {
-			const user = result.user.displayName.split(" ")[0];
-			const uid = result.user.uid;			
-			firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+    setUserInfo(userId){
+    	console.log('set user info fired');
+    	if (this.state.userNew){
+    		return '';
+    	}else{
+	    	firebase.database().ref(`users/${userId}`).on('value', snapshot => {
 				const userInfo = snapshot.val();
-				userInfo.key = uid;
-				this.setState({	
-					user: user, 
-					userId: uid, 
-					isLoggedIn: true,			
+				userInfo.key = userId;
+				this.setState({				
 					userDisplayName: userInfo.userDisplayName,
 					userInfo: {
 						userAlignment: userInfo.userAlignment,
@@ -82,13 +50,89 @@ class App extends Component {
 					}
 				});
 			});
+		}
+    }
+
+    componentDidMount() {
+    	// Persist login state during refresh or re-render
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				this.setState({ userId: user.uid, isLoggedIn:true });
+				this.setUserInfo(user.uid);
+			}else{
+				this.setState({ userDisplayName:`Guest-${Math.floor(Math.random() * 80)}`, userId:'', isLoggedIn:false, userNew: true,
+					userInfo: {
+     					userAvatar: 'https://i.imgur.com/gOawD3s.png'
+     				}
+				});
+			}
+		});		
+    }
+
+    handleLogin(e) {
+    	console.log("login fired")
+		auth.signInWithPopup(provider).then( (result) => {
+			const users = firebase.database().ref(`users`);
+			const uid = result.user.uid;
+			users.orderByChild(`userId`).equalTo(uid).once('value', snapshot => {
+				const userInfo = snapshot.val();
+				// If returning user, update state with user info
+				if(userInfo){
+					userInfo.key = uid;
+					this.setState({ 
+						userId: uid, 
+						isLoggedIn: true,			
+						userDisplayName: userInfo.userDisplayName,
+						userInfo: {
+							userAlignment: userInfo.userAlignment,
+							userAvatar: userInfo.userAvatar,
+							userBio: userInfo.userBio,
+							userId: userInfo.userId,
+							userRole: userInfo.userRole
+						},
+						userNew: false
+					});
+					firebase.database().ref(`users/${uid}`).update({
+						isLoggedIn: true,
+					});
+				}else {
+					// But if user is new, create a new user profile and update state with that info
+					firebase.database().ref(`users/${uid}`).set({
+						isLoggedIn: true,
+						userAlignment: 'Unaligned',
+						userAvatar: 'https://i.imgur.com/gOawD3s.png',
+						userBio: 'Write a short bio about yourself',
+						userDisplayName: result.user.displayName.split(" ")[0],
+						userId: uid,
+						userRole: 'Taco Fresco'
+					});
+					this.setState({
+						isLoggedIn: true,
+						userInfo: {
+							userAlignment: 'Unaligned',
+							userAvatar: 'https://i.imgur.com/gOawD3s.png',
+							userBio: 'Write a short bio about yourself',
+							userDisplayName: result.user.displayName.split(" ")[0],
+							userId: uid,
+							userRole: 'Taco Fresco'
+						}
+					});
+				}
+			})
 		});
     }
 
     handleLogout(e) {
     	console.log("logout fired")
 		auth.signOut().then(() => {
-			this.setState({ user:'Guest', userId:'', isLoggedIn:false });
+			firebase.database().ref(`users/${this.state.userId}`).update({
+				isLoggedIn: false,
+			});
+			this.setState({ userDisplayName:`Guest-${Math.floor(Math.random() * 80)}`, userId:'', isLoggedIn:false, 
+				userInfo: {
+     				userAvatar: 'https://i.imgur.com/gOawD3s.png'
+     			}
+     		});
 		});
     }
 
